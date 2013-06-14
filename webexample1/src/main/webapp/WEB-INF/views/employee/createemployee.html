@@ -1,0 +1,40 @@
+<div>
+<form action="#" th:action="@{/createemployee}" th:object="${employee}" method="post">
+	<fieldset>
+		<legend>Create Employee</legend>
+		          <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+          </ul>
+		<label for="firstName">Fist Name</label>
+		<input type="text" th:field="*{firstname}"/>
+		<br/>
+
+		<label for="lastName">Last Name</label>
+		<input type="text" th:field="*{lastname}"/>
+		<br/>
+		<label>Department</label> 
+		<select th:field="*{department.deptId}">
+				<option th:each="dept : ${allDepartments}" 
+				th:value="${dept.deptId}" 
+				th:text="#{${dept.name}}">option</option>
+		</select>
+		<br/>
+		<label for="streetNumber">Street Number</label>
+		<input type="text" th:field="*{address.streetNumber}"/>
+		<br/>
+		
+		<label>Suburb</label>
+		<input type="text" th:field="*{address.suburb}"/>
+		<br/>
+		
+		<label>State</label> 
+		<select th:field="*{address.stateBean.code}">
+				<option th:each="s : ${allStates}" th:value="${s.code}"
+				th:text="#{${s.state}}">
+				</option>
+		</select>
+		<br/>
+		<button type="submit" name="saveEmployee">Add</button>
+		</fieldset>
+</form>
+</div>

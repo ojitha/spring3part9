@@ -1,0 +1,24 @@
+<div>
+<form action="#" th:action="@{/state}" th:object="${state}" method="post">
+<fieldset>
+	<legend>Create New State</legend>
+
+	<label for="code">Code</label>
+	<input type="text" th:field="*{code}" id="code"/><br/>
+	<label>State:</label>
+	<input type="text" th:field="*{state}" th:class="${#fields.hasErrors('state')}? 'fieldError'"/><br/>
+	<button type="submit" name="save">Add</button>
+</fieldset>
+	<ul th:if="${#fields.hasErrors('*')}">
+  		<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+	</ul>
+</form>
+<table>
+	<tbody>
+		<tr th:each=" a : ${allStates} ">
+			<td th:text="${a.code}">code</td>
+			<td th:text="${a.state}">state</td>
+		</tr>
+	</tbody>
+</table>
+</div>
