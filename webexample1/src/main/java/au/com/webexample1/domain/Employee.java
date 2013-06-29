@@ -2,7 +2,6 @@ package au.com.webexample1.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -14,25 +13,24 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="emp_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="EMP_ID")
 	private int empId;
 
-	private String firstname;
+	@Column(name="FIRST_NAME")
+	private String firstName;
 
-	private String lastname;
-
-	//bi-directional many-to-one association to Department
-	@OneToMany(mappedBy="employee")
-	private List<Department> departments;
+	@Column(name="LAST_NAME")
+	private String lastName;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="ADDRESS_ID")
 	private Address address;
 
 	//bi-directional many-to-one association to Department
 	@ManyToOne
-	@JoinColumn(name="dept_id")
+	@JoinColumn(name="DEPT_ID")
 	private Department department;
 
 	public Employee() {
@@ -46,42 +44,20 @@ public class Employee implements Serializable {
 		this.empId = empId;
 	}
 
-	public String getFirstname() {
-		return this.firstname;
+	public String getFirstName() {
+		return this.firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return this.lastname;
+	public String getLastName() {
+		return this.lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public List<Department> getDepartments() {
-		return this.departments;
-	}
-
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
-	}
-
-	public Department addDepartment(Department department) {
-		getDepartments().add(department);
-		department.setEmployee(this);
-
-		return department;
-	}
-
-	public Department removeDepartment(Department department) {
-		getDepartments().remove(department);
-		department.setEmployee(null);
-
-		return department;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Address getAddress() {

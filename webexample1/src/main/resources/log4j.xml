@@ -15,6 +15,14 @@
 		<level value="info" />
 	</logger>
 	
+	<!-- Hibernate loggers -->
+	<logger name="org.hibernate.SQL">
+		<level value="trace" />
+	</logger>
+	<logger name="org.hibernate.type">
+		<level value="trace" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

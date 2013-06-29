@@ -6,14 +6,14 @@
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
           </ul>
 		<label for="firstName">Fist Name</label>
-		<input type="text" th:field="*{firstname}"/>
+		<input type="text" th:field="*{firstName}"/>
 		<br/>
 
 		<label for="lastName">Last Name</label>
-		<input type="text" th:field="*{lastname}"/>
+		<input type="text" th:field="*{lastName}"/>
 		<br/>
 		<label>Department</label> 
-		<select th:field="*{department.deptId}">
+		<select th:field="*{department}">
 				<option th:each="dept : ${allDepartments}" 
 				th:value="${dept.deptId}" 
 				th:text="#{${dept.name}}">option</option>
@@ -28,7 +28,7 @@
 		<br/>
 		
 		<label>State</label> 
-		<select th:field="*{address.stateBean.code}">
+		<select th:field="*{address.state}">
 				<option th:each="s : ${allStates}" th:value="${s.code}"
 				th:text="#{${s.state}}">
 				</option>

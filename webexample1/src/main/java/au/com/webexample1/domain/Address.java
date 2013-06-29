@@ -14,8 +14,9 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ADDRESS_ID")
+	private int addressId;
 
 	@Column(name="STREET_NUMBER")
 	private String streetNumber;
@@ -24,8 +25,8 @@ public class Address implements Serializable {
 
 	//bi-directional many-to-one association to State
 	@ManyToOne
-	@JoinColumn(name="STATE")
-	private State stateBean;
+	@JoinColumn(name="STATE_ID")
+	private State state;
 
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="address")
@@ -34,12 +35,12 @@ public class Address implements Serializable {
 	public Address() {
 	}
 
-	public int getId() {
-		return this.id;
+	public int getAddressId() {
+		return this.addressId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
 	}
 
 	public String getStreetNumber() {
@@ -58,12 +59,12 @@ public class Address implements Serializable {
 		this.suburb = suburb;
 	}
 
-	public State getStateBean() {
-		return this.stateBean;
+	public State getState() {
+		return this.state;
 	}
 
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	public List<Employee> getEmployees() {

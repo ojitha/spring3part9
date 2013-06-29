@@ -7,4 +7,5 @@ import au.com.webexample1.domain.Department;
 public interface DepartmentService {
 	public List<Department> findAll();
 	public Department findById(Integer id);
+	public Department save(Department department);
 }

@@ -37,4 +37,10 @@ public class StateServiceImpl implements StateService {
 		return states;
 	}
 
+	@Override
+	public State findById(String id) {
+		 return this.stateRepository.findOne(id);
+
+	}
+
 }

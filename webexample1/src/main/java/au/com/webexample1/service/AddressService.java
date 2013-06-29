@@ -6,5 +6,6 @@ import au.com.webexample1.domain.Address;
 
 public interface AddressService {
 	public List<Address> findAll();
+	public void save(Address address);
 
 }

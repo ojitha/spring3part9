@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -34,17 +35,11 @@ public class EmployeeController {
 	
 	@Autowired
 	private StateService stateService;
-	
-	 @InitBinder
-	    public void initDepartmentBinder(final WebDataBinder dataBinder) {
-	        dataBinder.registerCustomEditor(Department.class, new DepartmentPropertyEditor(this.departmentService));
-	    }
-	 
+		 
 	@RequestMapping(value = "/createemployee", method = RequestMethod.GET)
-	public String createEmployee(final Employee employee){ 
-		Address address = new Address();
-		address.setStateBean(new State());
-		employee.setAddress(address);
+	public String createEmployee(Model model){ 
+		Employee employee = new Employee();
+		model.addAttribute("employee", employee);
 		return "employee/createemployee";
 	}
 	
@@ -67,28 +62,5 @@ public class EmployeeController {
 		return "employee/createemployee";
 	}
 	
-	static class DepartmentPropertyEditor extends PropertyEditorSupport{
-		DepartmentService departmentService;
-		public DepartmentPropertyEditor(DepartmentService departmentService){
-			super();
-			this.departmentService = departmentService;
-		}
-		@Override
-		public String getAsText() {
-			Department dept = (Department) getValue();
-			return (dept != null ? Integer.toString(dept.getDeptId()):"");
-		}
-		@Override
-		public void setAsText(String text) throws IllegalArgumentException {
-			Integer id = Integer.parseInt(text);
-			setValue(this.departmentService.findById(id));
-		}
-		
-
-		
-		
-		
-		
-	}
-
+	
 }

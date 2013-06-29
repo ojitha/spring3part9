@@ -21,7 +21,7 @@ public class State implements Serializable {
 	private int version;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="stateBean")
+	@OneToMany(mappedBy="state")
 	private List<Address> addresses;
 
 	public State() {
@@ -61,14 +61,14 @@ public class State implements Serializable {
 
 	public Address addAddress(Address address) {
 		getAddresses().add(address);
-		address.setStateBean(this);
+		address.setState(this);
 
 		return address;
 	}
 
 	public Address removeAddress(Address address) {
 		getAddresses().remove(address);
-		address.setStateBean(null);
+		address.setState(null);
 
 		return address;
 	}

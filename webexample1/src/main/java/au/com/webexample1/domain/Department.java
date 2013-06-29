@@ -14,16 +14,16 @@ public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="dept_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="DEPT_ID")
 	private Integer deptId;
+
+	@Column(name="MANAGER_ID")
+	private int managerId;
 
 	private String name;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="manager_id")
-	private Employee employee;
+	private int version;
 
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="department")
@@ -40,6 +40,14 @@ public class Department implements Serializable {
 		this.deptId = deptId;
 	}
 
+	public int getManagerId() {
+		return this.managerId;
+	}
+
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -48,12 +56,12 @@ public class Department implements Serializable {
 		this.name = name;
 	}
 
-	public Employee getEmployee() {
-		return this.employee;
+	public int getVersion() {
+		return this.version;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public List<Employee> getEmployees() {

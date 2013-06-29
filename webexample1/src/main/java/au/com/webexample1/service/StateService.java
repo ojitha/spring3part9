@@ -7,5 +7,6 @@ import au.com.webexample1.domain.State;
 public interface StateService {
 	public void save(State state);
 	public List<State> findAll();
+	public State findById(String id);
 
 }

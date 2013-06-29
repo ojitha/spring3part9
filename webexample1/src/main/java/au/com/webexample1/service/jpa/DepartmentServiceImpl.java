@@ -19,13 +19,13 @@ import au.com.webexample1.service.DepartmentService;
 public class DepartmentServiceImpl implements DepartmentService {
 
 	@Autowired
-	DepartmentRepository departmentService;
+	DepartmentRepository departmentRepository;
 	
 	@Override
 	@Transactional
 	public List<Department> findAll() {
 		List<Department> departments = new ArrayList<Department>();
-		Iterator<Department> it = departmentService.findAll().iterator();
+		Iterator<Department> it = departmentRepository.findAll().iterator();
 		while(it.hasNext()){
 			departments.add(it.next());
 		}
@@ -34,7 +34,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public Department findById(Integer id) {
-		return this.departmentService.findOne(id);
+		return this.departmentRepository.findOne(id);
+	}
+
+	@Override
+	public Department save(Department department) {
+		return this.departmentRepository.save(department);
+		
 	}
 	
 	
